@@ -5,7 +5,7 @@ import Card from './components/Card'
 import ThemeButton from './components/ThemeButton'
 
 function App() {
-  const [themeMode,setThemeMode]=useState()
+  const [themeMode,setThemeMode]=useState("light")
   // console.log(themeMode);
   const lightTheme=()=>{
     setThemeMode('light')
@@ -18,19 +18,18 @@ function App() {
     document.querySelector('html').classList.add(themeMode)
   },[themeMode])
   return (
-    <ThemeProvider value={{themeMode,lightTheme,darkTheme}}>
-    <div className="flex flex-wrap min-h-screen items-center">
+  <ThemeProvider value={{themeMode,lightTheme,darkTheme}}>
+  <div className="flex flex-wrap min-h-screen items-center">
         <div className="w-full">
             <div className="w-full max-w-sm mx-auto flex justify-end mb-4">
-               <ThemeButton/>         
+              <ThemeButton/>         
             </div>
-
-          <div className="w-full max-w-sm mx-auto">
-          <Card/>             
-          </div>
+            <div className="w-full max-w-sm mx-auto">
+                <Card/>             
+            </div>
         </div>
-    </div>
-    </ThemeProvider>
+  </div>
+  </ThemeProvider>
 
   )
 }

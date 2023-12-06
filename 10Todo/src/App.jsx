@@ -2,7 +2,6 @@ import { useState,useEffect } from 'react'
 import './App.css'
 import { TodoProvider } from './contexts/index'
 import {TodoInput,TodoList} from './components/index'
-// import index
 
 function App() {
   const [todos,setTodos]=useState([])
