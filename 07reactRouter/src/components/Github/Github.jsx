@@ -9,14 +9,11 @@ function Github() {
     },[])
   return (
     <div>
-    <div className='bg-gray-700 text-white p-4 text-3xl'>Github Id : {gitData.id}
-    <img className='mx-auto'
-    src={gitData.avatar_url} alt="" width={300}/>
+      <div className='bg-gray-700 text-white p-4 text-3xl'>Github Id : {gitData.id}
+        <img className='mx-auto'
+        src={gitData.avatar_url} alt="" width={300}/>
+      </div>
     </div>
-    
-    </div>
-    
   )
 }
-
 export default Github
