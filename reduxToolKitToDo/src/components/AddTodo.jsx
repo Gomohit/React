@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { addTodo,removeTodo,updateTodo } from '../features/todo/todoSlice'
+import { addTodo} from '../features/todo/todoSlice'
 
 function AddTodo() {
     const [input,setInput]=useState("")
@@ -10,7 +10,6 @@ function AddTodo() {
         e.preventDefault()
         dispatch(addTodo(input))
         setInput("")
-
     }
   return (
     <form onSubmit={addTodoHandler} className="space-x-3 mt-12">
@@ -30,5 +29,4 @@ function AddTodo() {
     </form>
   )
 }
-
 export default AddTodo
