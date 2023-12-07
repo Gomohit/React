@@ -1,7 +1,6 @@
 import config from "../config/config";
 import { Client,ID,Databases,Storage,Query } from "appwrite";
 
-
 export class databaseService{
     client=new Client()
     database;
@@ -40,6 +39,7 @@ export class databaseService{
             throw error
         }
     }
+
     async deletePost(slug){
         try {
             return await this.database.deleteDocument(config.appwriteDatabaseId,config.appwriteCollectionId,slug)
@@ -55,6 +55,7 @@ export class databaseService{
             return false
         }
     }
+
     async getPosts(queries=[Query.equal("status","active")]){
         try {
             return await this.database.listDocuments(config.appwriteDatabaseId,config.appwriteCollectionId,queries)
@@ -62,6 +63,7 @@ export class databaseService{
             
         }
     }
+
     async uploadFile(file){
         try {
            return await this.bucket.createFile(config.appwriteBucketId,ID.unique(),file) 
@@ -69,6 +71,7 @@ export class databaseService{
             return false
         }
     }
+
     async deleteFile(fileId){
         try {
             await this.bucket.deleteFile(config.appwriteBucketId,fileId)
@@ -77,6 +80,7 @@ export class databaseService{
             return false
         }
     }
+
     getFilePreview(fileId){
         return this.bucket.getFilePreview(config.appwriteBucketId,fileId)
     }
