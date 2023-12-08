@@ -25,5 +25,5 @@ function Select({
         Select</div>
   )
 }
-
+//forward ref is given because using this we can access this element any other component its reference
 export default React.forwardRef(Select)
