@@ -1,5 +1,7 @@
 import React from "react";
 import {Link} from 'react-router-dom'
+import About from '../About/About';
+import Contact from '../Contact/Contact';
 export default function Home() {
     return (
         <div className="mx-auto w-full max-w-7xl">
@@ -35,7 +37,7 @@ export default function Home() {
                 </div>
             </aside>
 
-            <div className="grid  place-items-center sm:mt-20">
+            <div className="grid place-items-center sm:mt-20">
                 <img className="sm:w-96 w-48" src="https://i.ibb.co/2M7rtLk/Remote1.png" alt="image2" />
             </div>
 
