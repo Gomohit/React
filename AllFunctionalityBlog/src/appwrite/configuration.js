@@ -16,8 +16,7 @@ export class databaseService{
     async createPost({title,slug,content,featuredImage,status,userId}){
         try {
             const post=await this.database.createDocument(config.appwriteDatabaseId,config.appwriteCollectionId,slug,{
-                title,content,featuredImage,status,userId})
-            console.log(post);    
+                title,content,featuredImage,status,userId})  
             return post 
         } 
         catch (error) {
@@ -27,13 +26,12 @@ export class databaseService{
 
     async updatePost(slug,{title,content,featuredImage,status}){
         try{
-            await this.database.updateDocument(config.appwriteDatabaseId,config.appwriteCollectionId,slug,{
+            return await this.database.updateDocument(config.appwriteDatabaseId,config.appwriteCollectionId,slug,{
                 title,
                 content,
                 featuredImage,
                 status,
             })
-            return true
         }
         catch(error){
             throw error
@@ -56,13 +54,15 @@ export class databaseService{
         }
     }
 
-    async getPosts(queries=[Query.equal("status","active")]){
+    async getPosts(queries=[Query.equal("status","true")]){
         try {
-            return await this.database.listDocuments(config.appwriteDatabaseId,config.appwriteCollectionId,queries)
+            // let queries=[Query.equal("status","true")]
+            const result=await this.database.listDocuments(config.appwriteDatabaseId,config.appwriteCollectionId,queries)
+            return result
         } catch (error) {
-            
+            return false
         }
-    }
+    }       
 
     async uploadFile(file){
         try {

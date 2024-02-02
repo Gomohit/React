@@ -2,22 +2,25 @@ import {createSlice} from "@reduxjs/toolkit"
 
 const initialState={
     status:false,
-    userDate:null,
+    userData:null,
+    theme:"light"
 }
-
 const authSlice=createSlice({
     name:"auth",
     initialState,
     reducers:{
         login:(state,action)=>{
             state.status=true
-            state.userDate=action.payload.userDate
+            state.userData=action.payload.userData
         },
         logout:(state)=>{
             state.status=false
-            state.userDate=null
-        }
+            state.userData=null
+        },
+        toggleTheme: (state) => {
+            state.theme = state.theme === "light" ? "dark" : "light";
+        },
     }
 })
-export const {login,logout} = authSlice.actions;
+export const {login,logout,toggleTheme} = authSlice.actions;
 export default authSlice.reducer

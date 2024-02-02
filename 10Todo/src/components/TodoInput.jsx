@@ -4,14 +4,15 @@ import { useTodo } from '../contexts/index';
 
 function TodoInput() {
     const [todo,setTodo]=useState("")
-    const {addTodo}=useTodo()
+    const {addTodo,todos}=useTodo()
+    // console.log(addTodo);
     const add=(e)=>{
         e.preventDefault()
         if(!todo)return
         addTodo({todo:todo,completed:false})
         setTodo("")
     }
-
+    console.log(todos);
     return (
         <form onSubmit={add} className="flex">
             <input

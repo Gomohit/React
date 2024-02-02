@@ -1,5 +1,6 @@
 import React,{ useState,useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { Provider, useDispatch, useSelector } from 'react-redux'
+import store from './store/store'
 import authservice from './appwrite/auth'
 import './App.css'
 import { login, logout } from './store/authSlice'
@@ -9,9 +10,14 @@ import { Outlet } from 'react-router-dom'
 function App() {
   const [loading,setLoading]=useState(true)
   const dispatch=useDispatch()
-
+  const themeMode=useSelector((state)=>state.auth.theme)
+  console.log(themeMode)
   useEffect(()=>{
-    authservice.currentUser() 
+    document.querySelector('html').classList.remove("light","dark")
+    document.querySelector('html').classList.add(themeMode)
+  },[themeMode])
+  useEffect(()=>{
+    authservice.getCurrentUser() 
     .then((userData)=>{
       if(userData){
         dispatch(login({userData}))
@@ -20,19 +26,25 @@ function App() {
     })
     .finally(()=>setLoading(false))
   },[])
+  
    
 
   return !loading ?(
-    <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
-      <div className="w-full-block">
+    <Provider store={store}>
+    <div className='flex flex-col justify-normal bg-white mb-0 dark:bg-gray-700'>
+      <div className="w-full dark:bg-gray-700">
         <Header/>
-        <main>
-          {/* <Outlet/> */}
-        </main>
+          <Outlet/>
         <Footer/>
       </div>
+   </div>
+  </Provider> 
+  ):(
+    <div className="flex flex-col items-center justify-center spinner-container my-52">
+                <div className="border-t-2 border-blue-500  border-solid h-10 w-10 rounded-full animate-spin"></div>
+                <p className='text-center font-sans font-normal text-base mt-1 dark:text-gray-300'>loading...</p>
     </div>
-  ):null
+  )
 }
 
 export default App
