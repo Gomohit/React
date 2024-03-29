@@ -1,0 +1,43 @@
+.App{
+  font-family: sans-serif;
+  padding:0 20px;
+}
+.home-page{
+  width: 100% !important;
+}
+.product-page{
+  display: grid;
+  /* width: 100%; */
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+  padding: 20px 0;
+}
+
+.card{
+  border: 1px slid black;
+  text-align: center;
+  padding: 10px;
+}
+.card a{
+  text-decoration: none;
+  color: #333;
+}
+.card img{
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+.card h2{
+  font-size: 0.5em;
+}
+.prod-button{
+  width: 100%;
+  padding: 10px;
+}
+.breadcrumb a{
+  text-decoration: none ;
+  color:#333;
+}
+.breadcrumb span{
+  color: #333;
+}
